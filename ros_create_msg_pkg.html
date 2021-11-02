@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>ROSでパッケージを作成</title>
+    <link rel="stylesheet" href="stylesheet.css">
+  </head>
+
+  <body>
+    <h1>ROSのパッケージ(トピック通信用)作成方法</h1>
+    <br>
+
+    <ul>
+      <a href="https://raspimouse-sim-tutorial.gitbook.io/project/ros_tutorial/how_to_create_msg">参考url</a>
+      <h2>パッケージ作成手順</h2>
+
+      <ul>
+        <li>パッケージの作成</li>
+        <br>
+        <li>CMakeLists.txtの変更</li>
+        <br>
+        <li>package.xmlの変更</li>
+        <br>
+        <li>msgの作成</li>
+      </ul>
+      <br>
+
+
+      <h2>1. パッケージの作成</h2>
+        <p>・<strong>$ cd ~/catkin_ws/src </strong>と入力しcatkin_ws/srcに移動</p>
+        <p>・<strong>$ catkin_create_pkg <パッケージ名> rospy std_msgs</strong><br></p>
+        <p>・<strong>$ cd ../ </strong>と入力しcatkin_wsに移動</p>
+        <p>・<strong>$ catkin_make</strong>と入力しビルドする<br></p>
+
+      <br>
+
+      <h2>2. CMakeLists.txt</h2>
+
+        <ul>
+            <li>10行目のfind_packageにmessage_generationを追加</li>
+            <li>51行目から54行目のadd_message_fileのコメントアウトを外す</li>
+            <li>71行目から74行目のgenerate_messagesのコメントアウトを外す</li>
+            <li>108行目のcatkin_packageのCATKIN_DEPENDSのコメントアウトを外し、message_runtimeを追加</li>
+        </ul><br>
+
+      <h2>3. package.xmlの変更</h2>
+
+        <ul>
+          <li>40行目の<build_depend>message_generation</build_depend>のコメントアウトを外す</li>
+          <li>46行目の<exec_depend>message_runtime</exec_depend>のコメントアウトを外す</li>
+        </ul><br>
+
+
+      <h2>4. msgの作成</h2>
+
+        <p>・<strong>$ cd ~/catkin_ws/src/パッケージ名 </strong>と入力しパッケージに移動</p>
+        <p>・<strong>$ mkdir msg </strong>と入力しmsgディレクトリを作成</p>
+        <p>・<strong>$ nano msg/メッセージファイル名.msg </strong>と入力しmsgファイルを作成</p>
+        <p>・メッセージファイルは，以下のように記入</p>
+        <p><strong>&nbsp;&nbsp;&nbsp;&nbsp;例)&nbsp;int32 date</strong><br>
+        <p><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;float64 time</strong></p>
+        <p>・<strong>$ cd ~/catkin_ws/ </strong>と入力しcatkin_wsに移動</p>
+        <p>・<strong>$ catkin_make</strong>と入力しビルドする<br></p>
+
+    </ul>
+  </body>
+</html>
